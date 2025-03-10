@@ -1,152 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lu Le Laboratory – Professional Profile</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Le Lu – Professional Profile</title>
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- Navigation -->
   <header>
     <nav>
-      <div class="container">
-        <div class="logo"><a href="#home">Lu Le Laboratory</a></div>
+      <div class="container nav-container">
+        <div class="logo">
+          <a href="#home">Le Lu</a>
+        </div>
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
-          <li><a href="#linkedin">LinkedIn Profile</a></li>
-          <li><a href="#scholar">Google Scholar</a></li>
-          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#patents">Patents</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#skills">Skills</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
     </nav>
-    <div class="hero" id="home">
-      <div class="container">
-        <h1>Lu Le Laboratory</h1>
-        <p>Researcher | Innovator | Academic</p>
-      </div>
-    </div>
   </header>
 
-  <!-- Main Content -->
-  <main>
-    <!-- LinkedIn Profile Section -->
-    <section id="linkedin" class="section">
-      <div class="container">
-        <h2>LinkedIn Profile</h2>
-        <p>This section reproduces the key public details from my LinkedIn profile.</p>
-        <div class="profile-content">
-          <h3>Summary</h3>
-          <p>
-            I am a dedicated researcher and professional with extensive experience in innovative research,
-            academic collaboration, and technological development. My career spans roles in academia and industry,
-            where I lead projects in data analysis, machine learning, and applied research.
-          </p>
-          <h3>Experience</h3>
-          <ul>
-            <li>
-              <strong>Research Scientist</strong> – XYZ University (2020 – Present)
-              <br>
-              Leading interdisciplinary research in data analytics and machine learning.
-            </li>
-            <li>
-              <strong>Senior Researcher</strong> – ABC Research Lab (2015 – 2020)
-              <br>
-              Directed research projects, published multiple peer‐reviewed papers, and collaborated internationally.
-            </li>
-          </ul>
-          <h3>Education</h3>
-          <ul>
-            <li>
-              <strong>Ph.D. in Computer Science</strong> – University of Technology (2011 – 2015)
-            </li>
-            <li>
-              <strong>M.Sc. in Information Systems</strong> – Institute of Advanced Studies (2009 – 2011)
-            </li>
-          </ul>
-          <h3>Skills</h3>
-          <p>
-            Research Methodology, Data Science, Machine Learning, Python Programming, Academic Writing, Project Management.
-          </p>
-          <p>
-            For more details, visit my <a href="https://www.linkedin.com/in/lulelaboratory/" target="_blank">LinkedIn profile</a>.
-          </p>
-        </div>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <h1>Le Lu</h1>
+        <p>
+          Scientist &amp; Project Manager | Expert in CMP &amp; Material Simulation<br/>
+          Solving Complex Material Challenges in Semiconductor Fab
+        </p>
       </div>
-    </section>
+      <div class="hero-image">
+        <!-- Replace "profile.jpg" with your actual photo filename in images/ folder -->
+        <img src="images/profile.jpg" alt="Le Lu Photo" />
+      </div>
+    </div>
+  </section>
 
-    <!-- Google Scholar Profile Section -->
-    <section id="scholar" class="section">
-      <div class="container">
-        <h2>Google Scholar Profile</h2>
-        <p>This section includes an overview of my academic impact as shown on my Google Scholar profile.</p>
-        <div class="scholar-content">
-          <h3>Citation Metrics</h3>
-          <ul>
-            <li><strong>Total Citations:</strong> 1,500</li>
-            <li><strong>h-index:</strong> 25</li>
-            <li><strong>i10-index:</strong> 30</li>
-          </ul>
-          <h3>Selected Publications</h3>
-          <ul class="publication-list">
-            <li>
-              <strong>Publication Title 1</strong> – Journal of Innovative Research, 2023<br>
-              A study on advanced methodologies in machine learning applications.
-            </li>
-            <li>
-              <strong>Publication Title 2</strong> – International Journal of Data Science, 2021<br>
-              Exploring new algorithms for big data analysis.
-            </li>
-            <li>
-              <strong>Publication Title 3</strong> – Proceedings of the Global Conference on AI, 2019<br>
-              Insights into the evolution of neural network architectures.
-            </li>
-            <!-- Add more publications as needed -->
-          </ul>
-          <p>
-            See the complete list and details on my <a href="https://scholar.google.com/citations?user=kQF9vdgAAAAJ&hl=zh-TW" target="_blank">Google Scholar profile</a>.
-          </p>
-        </div>
-      </div>
-    </section>
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>
+        I earned my Ph.D. in Chemistry from Tsinghua University. From 2015 to 2021, 
+        I was a pivotal member of Professor Ruimao Hua’s laboratory, where I specialized 
+        in innovative reaction methodologies and uncovering reaction mechanisms through 
+        computational and spectroscopic approaches.
+      </p>
+      <p>
+        My work led to a groundbreaking observation of the π-complex as the key 
+        intermediate in the nitration of arenes at room temperature, culminating 
+        in the efficient HNO<sub>3</sub>/HFIP nitrating system for arenes. I also pioneered 
+        the Monomer-Polymer-Monomer (MPM) method—revolutionizing recyclable polymer 
+        creation and the synthesis of valuable 5-substituted benzofurans for the 
+        pharmaceutical industry.
+      </p>
+      <p>
+        In 2022, I joined Taiwan Semiconductor Manufacturing Company (TSMC) as a 
+        scientist and project manager, tackling complex material challenges in 
+        advanced nodes and significantly enhancing N3 yield. To date, I have 
+        published 11 papers in esteemed international journals and hold multiple patents.
+      </p>
+    </div>
+  </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-      <div class="container">
-        <h2>Projects</h2>
-        <div class="project-grid">
-          <div class="project-item">
-            <h3>Project Alpha</h3>
-            <p>A research project focused on developing novel machine learning techniques for big data applications.</p>
-          </div>
-          <div class="project-item">
-            <h3>Project Beta</h3>
-            <p>An innovative collaboration project between academia and industry to implement scalable data solutions.</p>
-          </div>
-          <!-- You can add additional project items here -->
-        </div>
-      </div>
-    </section>
+  <!-- Publications Section -->
+  <section id="publications" class="section">
+    <div class="container">
+      <h2>Publications</h2>
+      <ul class="publication-list">
+        <li>
+          <strong>Conversion of β-glycopyranoside to α-glycopyranoside by photo-activated radical reaction</strong>
+        </li>
+        <li>
+          <strong>HNO<sub>3</sub>/HFIP: A Nitrating System for Arenes with Direct Observation of π-Complex Intermediates</strong>
+        </li>
+        <li>
+          <strong>Dual XH–π Interaction of Hexafluoroisopropanol with Arenes</strong>
+        </li>
+        <li>
+          <strong>A Monomer‐Polymer‐Monomer (MPM) Organic Synthesis Strategy: Synthesis and Application of Polybenzofuran for Functionalizing Benzene Ring of Benzofuran</strong>
+        </li>
+        <li>
+          <strong>Biaryl Formation via Base-Promoted Direct Coupling Reactions of Arenes with Aryl Halides</strong>
+        </li>
+        <!-- Add more if you wish to list all 11, or summarize as needed -->
+      </ul>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-      <div class="container">
-        <h2>Contact</h2>
-        <p>If you would like to get in touch, please email me at <a href="mailto:your.email@example.com">your.email@example.com</a>.</p>
+  <!-- Patents Section -->
+  <section id="patents" class="section">
+    <div class="container">
+      <h2>Patents</h2>
+      <ul class="publication-list">
+        <li>
+          <strong>Soluble polybenzfuran, preparation method thereof and application thereof in synthesizing 5-substituted benzofuran</strong>
+        </li>
+        <li>
+          <strong>Method for synthesizing multi-connected benzofuran and derivative thereof</strong>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="section">
+    <div class="container">
+      <h2>Experience</h2>
+      <div class="experience-item">
+        <h3>Principal Engineer / Scientist &amp; Project Manager</h3>
+        <p><em>TSMC (February 2022 – Present)</em></p>
+        <ul>
+          <li>
+            Addressing complex material challenges in advanced nodes, significantly 
+            improving the yield of N3.
+          </li>
+          <li>
+            Leading cross-functional teams to innovate CMP processes and material simulations.
+          </li>
+        </ul>
       </div>
-    </section>
-  </main>
+      <div class="experience-item">
+        <h3>Graduate Researcher &amp; Research Assistant</h3>
+        <p><em>Professor Ruimao Hua’s Laboratory (2015 – 2021)</em></p>
+        <ul>
+          <li>
+            Developed and validated novel reaction methodologies and mechanisms using 
+            computational chemistry and spectroscopy.
+          </li>
+          <li>
+            Discovered the π-complex intermediate in arenes nitration, enabling a 
+            room-temperature HNO<sub>3</sub>/HFIP nitrating system.
+          </li>
+          <li>
+            Invented the MPM method for recyclable polymers and 5-substituted benzofurans.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="section">
+    <div class="container">
+      <h2>Education</h2>
+      <ul class="education-list">
+        <li>
+          <strong>Doctor of Philosophy (Ph.D.), Chemistry</strong> – Tsinghua University (2018 – 2021)
+        </li>
+        <li>
+          <strong>Master of Science (M.Sc.), Chemistry</strong> – Tsinghua University (2015 – 2018)
+        </li>
+        <li>
+          <strong>Bachelor of Science (B.Sc.), Chemistry</strong> – Fu Jen Catholic University (2011 – 2015)
+        </li>
+        <li>
+          <strong>No Code AI &amp; Machine Learning</strong> – MIT Professional Education (Mar 2024 – Jun 2024)
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Skills & Certifications Section -->
+  <section id="skills" class="section">
+    <div class="container">
+      <h2>Skills &amp; Certifications</h2>
+      <div class="skills-list">
+        <h3>Top Skills</h3>
+        <ul>
+          <li>Deep Learning</li>
+          <li>Network Deployment</li>
+          <li>Data Science</li>
+          <li>Artificial Intelligence (AI)</li>
+          <li>CMP &amp; Material Simulation</li>
+        </ul>
+      </div>
+      <div class="certifications-list">
+        <h3>Certifications</h3>
+        <ul>
+          <li>Chemical Technician Class C</li>
+          <li>NVIDIA Deep Learning Institute</li>
+        </ul>
+      </div>
+      <div class="languages-list">
+        <h3>Languages</h3>
+        <ul>
+          <li>English (Professional Working)</li>
+          <li>Chinese (Native or Bilingual)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Contact</h2>
+      <p>
+        Email: 
+        <a href="mailto:lulelaboratory@gmail.com">lulelaboratory@gmail.com</a>
+      </p>
+      <p>
+        LinkedIn: 
+        <a href="https://www.linkedin.com/in/lulelaboratory/" target="_blank">
+          www.linkedin.com/in/lulelaboratory
+        </a>
+      </p>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer>
-    <div class="container">
-      <p>&copy; 2025 Lu Le Laboratory. All rights reserved.</p>
+    <div class="container footer-container">
+      <p>&copy; 2025 Le Lu. All rights reserved.</p>
     </div>
   </footer>
 
+  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
