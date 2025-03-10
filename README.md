@@ -2,22 +2,28 @@
 
 This repository contains the source code for my professional personal website. The site integrates key public details from my [LinkedIn profile](https://www.linkedin.com/in/lulelaboratory/) and my [Google Scholar profile](https://scholar.google.com/citations?user=kQF9vdgAAAAJ&hl=zh-TW), including professional experience, education, skills, citation metrics, and selected publications.
 
-## Files
+## File Structure
 
-- **index.html**: The main HTML file containing the website structure.
-- **style.css**: CSS file for styling the website with a responsive, modern design.
-- **script.js**: JavaScript file for smooth scrolling on internal navigation links.
-- **README.md**: This documentation file.
-- **LICENSE**: License file for the project.
+- **index.html**: Main HTML structure.
+- **style.css**: CSS for layout and design.
+- **script.js**: Optional JavaScript for smooth scrolling.
+- **images/profile.jpg**: Your profile photo (rename your actual JPG file to `profile.jpg` and place it in `images/`).
+- **README.md**: This documentation.
+- **LICENSE**: License for this project.
 - **.gitignore**: Git ignore file.
 
-## Deployment
+## Usage
 
-1. Clone the repository.
-2. Customize any content as needed (update job titles, publication details, email, images, etc.).
-3. Push the repository to GitHub.
-4. Enable GitHub Pages from your repository settings to deploy your website.
+1. **Clone** this repository.
+2. **Replace** the placeholder `profile.jpg` in `images/` with your actual image file (also named `profile.jpg`).
+3. **Review & Update** any text in `index.html` and `style.css` if needed.
+4. **Push** the repository to GitHub.
+5. **Enable** GitHub Pages in your repository settings to deploy the site.
 
 ## Customization
 
-Feel free to modify sections, colors, fonts, or add more pages as your professional profile evolves.
+- **Colors & Fonts**: Adjust in `style.css`.
+- **Sections**: Modify or add sections in `index.html`.
+- **Photo**: Update `images/profile.jpg` with your own.
+
+Happy building!
