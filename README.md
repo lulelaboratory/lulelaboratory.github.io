@@ -1,6 +1,6 @@
 # Le Lu – Professional Personal Website
 
-This repository contains the source code for Le Lu’s professional website. It integrates details from my photo, profile, publications, patents, experience, education, skills, and contact information.
+This repository contains the source code for Le Lu’s professional website. It integrates details from my photo, profile, publications (with DOIs and links), patents, experience, education, skills, and contact information.
 
 ## File Structure
 
@@ -16,7 +16,7 @@ This repository contains the source code for Le Lu’s professional website. It 
 
 1. **Clone** this repository.
 2. **Replace** the placeholder `profile.jpg` in the `images/` folder with your actual photo.
-3. **Review & Update** any content in `index.html` and `style.css` as needed.
+3. **Review & Update** any content in `index.html` and `style.css` (especially the Publications section) with your actual publication details.
 4. **Push** the repository to GitHub.
 5. **Enable** GitHub Pages via the repository settings to deploy the site.
 
@@ -24,6 +24,6 @@ This repository contains the source code for Le Lu’s professional website. It 
 
 - Adjust colors, fonts, and layout in `style.css`.
 - Modify or add sections in `index.html` as your professional profile evolves.
-- Update your publications by editing the Publications section in `index.html`.
+- Update your publication details by editing the Publications section in `index.html`.
 
 Happy building!
