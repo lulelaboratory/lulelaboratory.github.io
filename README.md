@@ -1,5 +1,3 @@
-# lulelaboratory.github.io
-
 # Lu Le Laboratory Personal Website
 
 This repository hosts the source code for my personal website. The site showcases my professional background (as detailed on my [LinkedIn](https://www.linkedin.com/in/lulelaboratory/)) and my academic publications (as seen on my [Google Scholar](https://scholar.google.com/citations?user=kQF9vdgAAAAJ&hl=zh-TW&authuser=1) profile).
