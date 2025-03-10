@@ -122,8 +122,14 @@ header {
 }
 
 .publication-list li {
-  margin-bottom: 15px;
-  line-height: 1.5;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.publication-list h4 {
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+  color: #333;
 }
 
 .small-text {
