@@ -7,9 +7,9 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  line-height: 1.6;
-  color: #333;
   background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
 }
 
 .container {
@@ -50,7 +50,6 @@ nav .logo a {
 .nav-links a {
   text-decoration: none;
   color: #fff;
-  font-size: 1rem;
   transition: color 0.3s;
 }
 
@@ -64,12 +63,9 @@ nav .logo a {
   height: 60vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   color: #fff;
   text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
-}
-
-.hero .container {
-  text-align: center;
 }
 
 .hero h1 {
@@ -88,10 +84,10 @@ nav .logo a {
   margin: 20px 0;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  text-align: center;
 }
 
 .section h2 {
+  text-align: center;
   margin-bottom: 20px;
   font-size: 2rem;
   color: #222;
@@ -100,18 +96,37 @@ nav .logo a {
 .section p {
   font-size: 1rem;
   margin-bottom: 20px;
+  text-align: center;
 }
 
-.publication-list {
-  list-style: none;
-  padding: 0;
+.profile-content,
+.scholar-content {
   max-width: 800px;
   margin: 0 auto;
   text-align: left;
 }
 
+.profile-content h3,
+.scholar-content h3 {
+  margin: 20px 0 10px;
+  color: #333;
+}
+
+.profile-content ul,
+.scholar-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+.profile-content li,
+.scholar-content li {
+  margin-bottom: 10px;
+}
+
+/* Publication List */
 .publication-list li {
-  margin: 10px 0;
+  margin-bottom: 15px;
 }
 
 /* Projects Grid */
@@ -135,7 +150,7 @@ nav .logo a {
   margin-bottom: 10px;
 }
 
-/* Contact Links */
+/* Contact Section */
 #contact a {
   color: #f0a500;
   text-decoration: none;
