@@ -1,13 +1,13 @@
-# Lu Le Laboratory – Professional Personal Website
+# Le Lu – Professional Personal Website
 
-This repository contains the source code for my professional personal website. The site integrates key public details from my [LinkedIn profile](https://www.linkedin.com/in/lulelaboratory/) and my [Google Scholar profile](https://scholar.google.com/citations?user=kQF9vdgAAAAJ&hl=zh-TW), including professional experience, education, skills, citation metrics, and selected publications.
+This repository contains the source code for Le Lu’s professional website. It integrates details from my photo, profile, publications, patents, experience, education, skills, and contact information.
 
 ## File Structure
 
 - **index.html**: Main HTML structure.
-- **style.css**: CSS for layout and design.
-- **script.js**: Optional JavaScript for smooth scrolling.
-- **images/profile.jpg**: Your profile photo (rename your actual JPG file to `profile.jpg` and place it in `images/`).
+- **style.css**: Modern CSS styling for layout and design.
+- **script.js**: JavaScript for smooth scrolling.
+- **images/profile.jpg**: Your profile photo (rename your actual image to `profile.jpg` and place it in the images folder).
 - **README.md**: This documentation.
 - **LICENSE**: License for this project.
 - **.gitignore**: Git ignore file.
@@ -15,15 +15,15 @@ This repository contains the source code for my professional personal website. T
 ## Usage
 
 1. **Clone** this repository.
-2. **Replace** the placeholder `profile.jpg` in `images/` with your actual image file (also named `profile.jpg`).
-3. **Review & Update** any text in `index.html` and `style.css` if needed.
+2. **Replace** the placeholder `profile.jpg` in the `images/` folder with your actual photo.
+3. **Review & Update** any content in `index.html` and `style.css` as needed.
 4. **Push** the repository to GitHub.
-5. **Enable** GitHub Pages in your repository settings to deploy the site.
+5. **Enable** GitHub Pages via the repository settings to deploy the site.
 
 ## Customization
 
-- **Colors & Fonts**: Adjust in `style.css`.
-- **Sections**: Modify or add sections in `index.html`.
-- **Photo**: Update `images/profile.jpg` with your own.
+- Adjust colors, fonts, and layout in `style.css`.
+- Modify or add sections in `index.html` as your professional profile evolves.
+- Update your publications by editing the Publications section in `index.html`.
 
 Happy building!
