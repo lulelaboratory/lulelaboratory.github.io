@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curve Fitting Model Comparison Tool</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- D3.js for plotting -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <!-- TensorFlow.js for Machine Learning Models -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7127569160391563"
+     crossorigin="anonymous"></script>
+
+    <style>
+        /* Custom styles for a better look and feel */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .control-panel {
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        .label-text {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #475569; /* slate-600 */
+        }
+        .value-text {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #1e293b; /* slate-800 */
+            min-width: 40px;
+        }
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #0f172a; /* slate-900 */
+            border-bottom: 2px solid #e2e8f0; /* slate-200 */
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+        .btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        /* Custom scrollbar */
+        .control-panel::-webkit-scrollbar {
+            width: 8px;
+        }
+        .control-panel::-webkit-scrollbar-track {
+            background: #f1f5f9; /* slate-100 */
+        }
+        .control-panel::-webkit-scrollbar-thumb {
+            background: #cbd5e1; /* slate-300 */
+            border-radius: 4px;
+        }
+        .control-panel::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; /* slate-400 */
+        }
+        /* Modal styles */
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+        .modal-content {
+            transition: transform 0.25s ease;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-slate-900">Curve Fitting Model Comparison Tool</h1>
+            <button id="about-button" class="text-sm font-medium text-blue-600 hover:text-blue-800">About</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="p-4 lg:p-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left Side: Control Panel -->
+            <div class="lg:col-span-1 bg-white p-6 rounded-lg shadow-md control-panel">
+                <!-- Data Generation -->
+                <div>
+                    <h2 class="section-title">Data Generation</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="num-points" class="label-text">Number of Points</label>
+                            <div class="flex items-center space-x-4">
+                                <input type="range" id="num-points" min="20" max="200" value="50" class="w-full">
+                                <span id="num-points-value" class="value-text">50</span>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="noise-level" class="label-text">Noise Level</label>
+                            <div class="flex items-center space-x-4">
+                                <input type="range" id="noise-level" min="0" max="1" step="0.01" value="0.2" class="w-full">
+                                <span id="noise-level-value" class="value-text">0.20</span>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="func-type" class="label-text">Function Type</label>
+                            <select id="func-type" class="w-full mt-1 p-2 border border-slate-300 rounded-md">
+                                <option>Sine Wave</option>
+                                <option>Polynomial</option>
+                                <option>Exponential</option>
+                                <option>Gaussian</option>
+                                <option>Linear</option>
+                            </select>
+                        </div>
+                        <button id="generate-data-btn" class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-md btn">Generate New Data</button>
+                    </div>
+                </div>
+
+                <!-- Model Selection -->
+                <div class="mt-8">
+                    <h2 class="section-title">Model Selection</h2>
+                    <div id="model-selection-grid" class="grid grid-cols-2 gap-x-4 gap-y-2">
+                        <!-- Checkboxes will be inserted here by JS -->
+                    </div>
+                </div>
+
+                <!-- Model Parameters -->
+                <div class="mt-8">
+                    <h2 class="section-title">Model Parameters</h2>
+                    <div id="param-container" class="space-y-6">
+                        <!-- Parameter controls will be inserted here by JS -->
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="mt-8 pt-6 border-t border-slate-200">
+                     <div class="grid grid-cols-2 gap-4">
+                         <button id="train-btn" class="w-full bg-green-600 text-white font-bold py-2 px-4 rounded-md btn">Train Models</button>
+                         <button id="clear-btn" class="w-full bg-red-600 text-white font-bold py-2 px-4 rounded-md btn">Clear Results</button>
+                     </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Plot and Metrics -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Plot Area -->
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <div id="plot-container"></div>
+                </div>
+
+                <!-- AdSense Ad Unit -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <h2 class="section-title">Advertisement</h2>
+					<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7127569160391563"
+						 crossorigin="anonymous"></script>
+					<!-- Test_1 -->
+					<ins class="adsbygoogle"
+						 style="display:block"
+						 data-ad-client="ca-pub-7127569160391563"
+						 data-ad-slot="6118218539"
+						 data-ad-format="auto"
+						 data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                    
+                </div>
+
+                <!-- Error Metrics -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="section-title">Model Performance Metrics</h2>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-slate-200">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Model</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Train RMSE</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Test RMSE</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Train R²</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Test R²</th>
+                                </tr>
+                            </thead>
+                            <tbody id="error-table-body" class="bg-white divide-y divide-slate-200">
+                                <!-- Error rows will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="text-center py-4 text-xs text-slate-500">
+        <p>© 2024 Le Lu (lulelaboratory@gmail.com) - All Rights Reserved.</p>
+    </footer>
+
+    <!-- About Modal -->
+    <div id="about-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 hidden opacity-0">
+        <div class="bg-white rounded-lg shadow-xl p-8 max-w-lg w-full transform scale-95 modal-content">
+            <div class="flex justify-between items-start">
+                <h2 class="text-2xl font-bold text-slate-900">About This Tool</h2>
+                <button id="close-modal-btn" class="text-slate-500 hover:text-slate-800">&times;</button>
+            </div>
+            <div class="mt-4 text-slate-600 space-y-4">
+                <p class="font-semibold">Curve Fitting Model Comparison Tool v1.02 (Web)</p>
+                <p>A comprehensive GUI application for comparing different machine learning models in curve fitting tasks.</p>
+                <p class="font-medium">Features:</p>
+                <ul class="list-disc list-inside space-y-1">
+                    <li>Gaussian Process Regression</li>
+                    <li>Multi-Layer Perceptron (Neural Network)</li>
+                    <li>Support Vector Regression</li>
+                    <li>Naive Bayes (Binned Mean)</li>
+                    <li>Random Forest</li>
+                    <li>Gradient Boosting</li>
+                </ul>
+                <p class="mt-6 text-sm">
+                    <strong>Copyright (c) 2024 Le Lu (lulelaboratory@gmail.com)</strong><br>
+                    All rights reserved. This software is proprietary and confidential. Unauthorized copying, distribution, or use of this software, via any medium, is strictly prohibited. For licensing inquiries, please contact the author.
+                </p>
+            </div>
+        </div>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- STATE MANAGEMENT ---
+    let state = {
+        data: { X: [], y: [], X_train: [], y_train: [], X_test: [], y_test: [] },
+        models: {},
+        errors: {},
+        scalers: {},
+        plot: {
+            svg: null,
+            xScale: null,
+            yScale: null,
+            width: 0,
+            height: 0
+        },
+        modelConfig: {
+            'GP': { name: 'Gaussian Process', active: true, color: '#3b82f6' },
+            'MLP': { name: 'Multi-Layer Perceptron', active: true, color: '#16a34a' },
+            'SVR': { name: 'Support Vector Regression', active: true, color: '#dc2626' },
+            'NB': { name: 'Naive Bayes (Binned)', active: true, color: '#9333ea' },
+            'RF': { name: 'Random Forest', active: true, color: '#f97316' },
+            'GB': { name: 'Gradient Boosting', active: true, color: '#78350f' },
+        }
+    };
+
+    // --- DOM ELEMENT REFERENCES ---
+    const DOMElements = {
+        numPoints: document.getElementById('num-points'),
+        numPointsValue: document.getElementById('num-points-value'),
+        noiseLevel: document.getElementById('noise-level'),
+        noiseLevelValue: document.getElementById('noise-level-value'),
+        funcType: document.getElementById('func-type'),
+        generateBtn: document.getElementById('generate-data-btn'),
+        modelSelectionGrid: document.getElementById('model-selection-grid'),
+        paramContainer: document.getElementById('param-container'),
+        trainBtn: document.getElementById('train-btn'),
+        clearBtn: document.getElementById('clear-btn'),
+        plotContainer: document.getElementById('plot-container'),
+        errorTableBody: document.getElementById('error-table-body'),
+        aboutButton: document.getElementById('about-button'),
+        aboutModal: document.getElementById('about-modal'),
+        closeModalBtn: document.getElementById('close-modal-btn'),
+    };
+
+    // --- HELPER & UTILITY FUNCTIONS ---
+
+    /**
+     * Generates synthetic data based on a selected function type.
+     * @param {number} numPoints - Number of data points to generate.
+     * @param {number} noiseLevel - Amount of random noise to add.
+     * @param {string} funcType - The type of function to generate data from.
+     * @returns {{X: number[][], y: number[][]}} The generated data.
+     */
+    function generateData(numPoints, noiseLevel, funcType) {
+        const X = Array.from({ length: numPoints }, (_, i) => [10 * i / (numPoints - 1)]);
+        let y_true;
+
+        switch (funcType) {
+            case "Polynomial":
+                y_true = X.map(([x]) => 0.5 * x ** 2 - 2 * x + 5);
+                break;
+            case "Exponential":
+                y_true = X.map(([x]) => Math.exp(x / 3));
+                break;
+            case "Gaussian":
+                y_true = X.map(([x]) => Math.exp(-0.5 * (x - 5) ** 2));
+                break;
+            case "Linear":
+                y_true = X.map(([x]) => 1.5 * x + 2);
+                break;
+            case "Sine Wave":
+            default:
+                y_true = X.map(([x]) => Math.sin(x));
+                break;
+        }
+
+        const y = y_true.map((val, i) => [val + (Math.random() - 0.5) * 2 * noiseLevel]);
+        return { X, y };
+    }
+
+    /**
+     * Splits data into training and testing sets.
+     * @param {number[][]} X - The input features.
+     * @param {number[][]} y - The target values.
+     * @param {number} testSize - The proportion of the dataset to allocate to the test split.
+     * @returns {{X_train: number[][], y_train: number[][], X_test: number[][], y_test: number[][]}} The split data.
+     */
+    function trainTestSplit(X, y, testSize = 0.3) {
+        const combined = X.map((val, i) => ({ x: val, y: y[i] }));
+        combined.sort(() => 0.5 - Math.random()); // Shuffle
+        const splitIndex = Math.floor(combined.length * (1 - testSize));
+        const train = combined.slice(0, splitIndex);
+        const test = combined.slice(splitIndex);
+
+        return {
+            X_train: train.map(d => d.x),
+            y_train: train.map(d => d.y),
+            X_test: test.map(d => d.x),
+            y_test: test.map(d => d.y)
+        };
+    }
+
+    /**
+     * A simple StandardScaler implementation.
+     */
+    class StandardScaler {
+        fit(data) {
+            const flatData = data.flat();
+            this.mean = d3.mean(flatData);
+            this.std = d3.deviation(flatData);
+            if (this.std === 0) this.std = 1;
+        }
+        transform(data) {
+            return data.map(row => row.map(val => (val - this.mean) / this.std));
+        }
+        inverseTransform(data) {
+            return data.map(row => row.map(val => (val * this.std) + this.mean));
+        }
+        fitTransform(data) {
+            this.fit(data);
+            return this.transform(data);
+        }
+    }
+
+    /**
+     * Calculates RMSE and R-squared metrics.
+     * @param {number[][]} y_true - The true target values.
+     * @param {number[][]} y_pred - The predicted values.
+     * @returns {{rmse: number, r2: number}} The calculated metrics.
+     */
+    function calculateErrors(y_true, y_pred) {
+        const y_true_flat = y_true.flat();
+        const y_pred_flat = y_pred.flat();
+        
+        const n = y_true_flat.length;
+        if (n === 0) return { rmse: 0, r2: 0 };
+
+        const mse = d3.sum(y_true_flat, (d, i) => (d - y_pred_flat[i]) ** 2) / n;
+        const rmse = Math.sqrt(mse);
+
+        const mean_y_true = d3.mean(y_true_flat);
+        const ss_tot = d3.sum(y_true_flat, d => (d - mean_y_true) ** 2);
+        const ss_res = d3.sum(y_true_flat, (d, i) => (d - y_pred_flat[i]) ** 2);
+
+        const r2 = ss_tot === 0 ? 1 : 1 - (ss_res / ss_tot);
+
+        return { rmse, r2 };
+    }
+
+
+    // --- PLOTTING FUNCTIONS ---
+
+    /**
+     * Initializes the D3.js plot area.
+     */
+    function initPlot() {
+        const containerWidth = DOMElements.plotContainer.clientWidth;
+        const margin = { top: 40, right: 160, bottom: 50, left: 60 };
+        const width = containerWidth - margin.left - margin.right;
+        const height = 450 - margin.top - margin.bottom;
+
+        state.plot.width = width;
+        state.plot.height = height;
+
+        DOMElements.plotContainer.innerHTML = '';
+        state.plot.svg = d3.select("#plot-container").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        state.plot.xScale = d3.scaleLinear().range([0, width]);
+        state.plot.yScale = d3.scaleLinear().range([height, 0]);
+
+        state.plot.svg.append("g").attr("class", "x-axis").attr("transform", `translate(0,${height})`);
+        state.plot.svg.append("g").attr("class", "y-axis");
+        
+        state.plot.svg.append("text")
+            .attr("text-anchor", "middle")
+            .attr("x", width / 2)
+            .attr("y", height + margin.top - 10)
+            .text("x");
+            
+        state.plot.svg.append("text")
+            .attr("text-anchor", "middle")
+            .attr("transform", "rotate(-90)")
+            .attr("y", -margin.left + 20)
+            .attr("x", -height / 2)
+            .text("y");
+
+        state.plot.svg.append("text")
+            .attr("x", width / 2)
+            .attr("y", 0 - (margin.top / 2))
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px")
+            .style("font-weight", "bold")
+            .text("Curve Fitting Model Comparison");
+    }
+
+    /**
+     * Updates the plot with new data and model predictions.
+     */
+    function updatePlot() {
+        if (!state.plot.svg) initPlot();
+
+        const { X, y } = state.data;
+        if (X.length === 0) return;
+
+        const all_y = state.data.y.flat();
+        Object.values(state.models).forEach(model => {
+            if (model && model.name === 'GP' && model.last_prediction) {
+                const { mean, std } = model.last_prediction;
+                all_y.push(...mean.flat().map((m, i) => m + std[i][0]));
+                all_y.push(...mean.flat().map((m, i) => m - std[i][0]));
+            }
+        });
+
+        const x_domain = d3.extent(X.flat());
+        const y_domain = d3.extent(all_y);
+        const y_padding = (y_domain[1] - y_domain[0]) * 0.1;
+        state.plot.xScale.domain(x_domain);
+        state.plot.yScale.domain([y_domain[0] - y_padding, y_domain[1] + y_padding]);
+
+        state.plot.svg.select(".x-axis").transition().call(d3.axisBottom(state.plot.xScale));
+        state.plot.svg.select(".y-axis").transition().call(d3.axisLeft(state.plot.yScale));
+
+        state.plot.svg.selectAll(".plot-element").remove();
+
+        const plotElements = state.plot.svg.append("g").attr("class", "plot-element");
+
+        const trainData = state.data.X_train.map((d, i) => ({ x: d[0], y: state.data.y_train[i][0] }));
+        const testData = state.data.X_test.map((d, i) => ({ x: d[0], y: state.data.y_test[i][0] }));
+
+        plotElements.append('g').selectAll("circle")
+            .data(trainData)
+            .enter()
+            .append("circle")
+            .attr("cx", d => state.plot.xScale(d.x))
+            .attr("cy", d => state.plot.yScale(d.y))
+            .attr("r", 4)
+            .style("fill", "#334155");
+
+        plotElements.append('g').selectAll("path")
+            .data(testData)
+            .enter()
+            .append("path")
+            .attr("d", d3.symbol().type(d3.symbolCross).size(48))
+            .attr("transform", d => `translate(${state.plot.xScale(d.x)},${state.plot.yScale(d.y)})`)
+            .style("fill", "#64748b");
+            
+        const X_plot = d3.range(x_domain[0], x_domain[1], (x_domain[1] - x_domain[0]) / 200).map(d => [d]);
+
+        Object.entries(state.models).forEach(([name, model]) => {
+            if (!model) return;
+            
+            if (name === 'GP') {
+                const prediction = model.predict(X_plot);
+                model.last_prediction = prediction; // Cache for y-axis scaling
+                const { mean, std } = prediction;
+
+                const area = d3.area()
+                    .x((d, i) => state.plot.xScale(X_plot[i][0]))
+                    .y0((d, i) => state.plot.yScale(d[0] - std[i][0]))
+                    .y1((d, i) => state.plot.yScale(d[0] + std[i][0]));
+
+                plotElements.append("path")
+                    .datum(mean)
+                    .attr("fill", state.modelConfig[name].color)
+                    .attr("opacity", 0.2)
+                    .attr("d", area);
+                
+                const line = d3.line()
+                    .x((d, i) => state.plot.xScale(X_plot[i][0]))
+                    .y(d => state.plot.yScale(d[0]));
+
+                plotElements.append("path")
+                    .datum(mean)
+                    .attr("fill", "none")
+                    .attr("stroke", state.modelConfig[name].color)
+                    .attr("stroke-width", 2.5)
+                    .attr("d", line);
+            } else {
+                let y_plot;
+                if (name === 'MLP') {
+                    const X_plot_scaled = state.scalers.X.transform(X_plot);
+                    const y_pred_scaled = model.predict(tf.tensor2d(X_plot_scaled)).arraySync();
+                    y_plot = state.scalers.y.inverseTransform(y_pred_scaled);
+                } else {
+                    y_plot = model.predict(X_plot);
+                }
+
+                if(y_plot) {
+                    const lineData = X_plot.map((d, i) => ({ x: d[0], y: y_plot[i][0] }));
+                    const line = d3.line()
+                        .x(d => state.plot.xScale(d.x))
+                        .y(d => state.plot.yScale(d.y));
+
+                    plotElements.append("path")
+                        .datum(lineData)
+                        .attr("fill", "none")
+                        .attr("stroke", state.modelConfig[name].color)
+                        .attr("stroke-width", 2.5)
+                        .attr("d", line);
+                }
+            }
+        });
+
+        const legend = plotElements.append("g")
+            .attr("transform", `translate(${state.plot.width + 20}, 0)`);
+
+        const legendItems = [
+            { label: "Training Data", color: "#334155", shape: "circle" },
+            { label: "Test Data", color: "#64748b", shape: "cross" },
+            ...Object.entries(state.models).filter(([_, m]) => m).map(([name, _]) => ({
+                label: state.modelConfig[name].name,
+                color: state.modelConfig[name].color,
+                shape: 'line'
+            }))
+        ];
+        if (state.models['GP']) {
+            legendItems.push({ label: "GP (±1 Std Dev)", color: state.modelConfig['GP'].color, shape: 'area' });
+        }
+
+        legendItems.forEach((item, i) => {
+            const legendItem = legend.append("g").attr("transform", `translate(0, ${i * 25})`);
+            if (item.shape === 'line') {
+                legendItem.append("line").attr("x1", 0).attr("x2", 20).attr("y1", 10).attr("y2", 10).attr("stroke", item.color).attr("stroke-width", 2);
+            } else if (item.shape === 'circle') {
+                legendItem.append("circle").attr("cx", 10).attr("cy", 10).attr("r", 4).style("fill", item.color);
+            } else if (item.shape === 'cross') {
+                legendItem.append("path").attr("d", d3.symbol().type(d3.symbolCross).size(48)).attr("transform", `translate(10, 10)`).style("fill", item.color);
+            } else if (item.shape === 'area') {
+                legendItem.append("rect").attr("x", 0).attr("y", 0).attr("width", 20).attr("height", 20).style("fill", item.color).style("opacity", 0.2);
+            }
+            legendItem.append("text").attr("x", 25).attr("y", 10).attr("dy", "0.35em").text(item.label).style("font-size", "12px");
+        });
+    }
+
+
+    // --- UI & DYNAMIC CONTENT ---
+
+    function createSlider(id, label, min, max, step, value) {
+        const val = parseFloat(value).toFixed(step.toString().split('.')[1]?.length || 0);
+        return `<div><label for="${id}" class="label-text">${label}</label><div class="flex items-center space-x-4"><input type="range" id="${id}" min="${min}" max="${max}" step="${step}" value="${value}" class="w-full model-param"><span id="${id}-value" class="value-text">${val}</span></div></div>`;
+    }
+    
+    function createTextInput(id, label, value) {
+        return `<div><label for="${id}" class="label-text">${label}</label><input type="text" id="${id}" value="${value}" class="w-full mt-1 p-2 border border-slate-300 rounded-md model-param"></div>`;
+    }
+
+    function buildParamControls() {
+        DOMElements.paramContainer.innerHTML = '';
+        let html = '';
+        if (state.modelConfig['GP'].active) {
+            html += `<div class="p-4 border rounded-md border-slate-200"><h3 class="font-semibold text-slate-700 mb-2">Gaussian Process</h3>${createSlider('gp-ls', 'Length Scale', 0.1, 2.0, 0.05, 0.5)}${createSlider('gp-noise', 'Noise (Std Dev)', 0.0, 0.5, 0.01, 0.1)}</div>`;
+        }
+        if (state.modelConfig['MLP'].active) {
+            html += `<div class="p-4 border rounded-md border-slate-200"><h3 class="font-semibold text-slate-700 mb-2">Multi-Layer Perceptron</h3>${createTextInput('mlp-layers', 'Hidden Layers (e.g., 50,50)', '50,50')}${createSlider('mlp-lr', 'Learning Rate', 0.0001, 0.1, 0.0001, 0.001)}</div>`;
+        }
+        if (state.modelConfig['SVR'].active) {
+             html += `<div class="p-4 border rounded-md border-slate-200"><h3 class="font-semibold text-slate-700 mb-2">Support Vector Regression</h3>${createSlider('svr-c', 'C', 0.1, 1000, 0.1, 100)}${createSlider('svr-eps', 'Epsilon', 0.0, 1.0, 0.01, 0.1)}</div>`;
+        }
+        if (state.modelConfig['NB'].active) {
+            html += `<div class="p-4 border rounded-md border-slate-200"><h3 class="font-semibold text-slate-700 mb-2">Naive Bayes (Binned)</h3>${createSlider('nb-bins', 'Number of Bins', 2, 20, 1, 10)}</div>`;
+        }
+        if (state.modelConfig['RF'].active) {
+            html += `<div class="p-4 border rounded-md border-slate-200"><h3 class="font-semibold text-slate-700 mb-2">Random Forest</h3>${createSlider('rf-est', 'N Estimators', 10, 500, 10, 100)}${createSlider('rf-depth', 'Max Depth', 5, 30, 1, 10)}</div>`;
+        }
+        if (state.modelConfig['GB'].active) {
+            html += `<div class="p-4 border rounded-md border-slate-200"><h3 class="font-semibold text-slate-700 mb-2">Gradient Boosting</h3>${createSlider('gb-est', 'N Estimators', 10, 500, 10, 100)}${createSlider('gb-lr', 'Learning Rate', 0.01, 1.0, 0.01, 0.1)}${createSlider('gb-depth', 'Max Depth', 1, 10, 1, 3)}</div>`;
+        }
+        DOMElements.paramContainer.innerHTML = html;
+        DOMElements.paramContainer.querySelectorAll('input[type="range"]').forEach(slider => {
+            slider.addEventListener('input', (e) => {
+                const step = e.target.step;
+                const decimals = step.includes('.') ? step.split('.')[1].length : 0;
+                document.getElementById(`${e.target.id}-value`).textContent = parseFloat(e.target.value).toFixed(decimals);
+            });
+        });
+    }
+
+    function displayErrors() {
+        DOMElements.errorTableBody.innerHTML = '';
+        let html = '';
+        Object.entries(state.errors).forEach(([name, error]) => {
+            if (error) {
+                html += `<tr class="text-sm"><td class="px-6 py-4 whitespace-nowrap font-medium text-slate-900">${state.modelConfig[name].name}</td><td class="px-6 py-4 whitespace-nowrap text-slate-500">${error.train_rmse.toFixed(4)}</td><td class="px-6 py-4 whitespace-nowrap text-slate-500">${error.test_rmse.toFixed(4)}</td><td class="px-6 py-4 whitespace-nowrap text-slate-500">${error.train_r2.toFixed(4)}</td><td class="px-6 py-4 whitespace-nowrap text-slate-500">${error.test_r2.toFixed(4)}</td></tr>`;
+            } else {
+                 html += `<tr class="text-sm"><td class="px-6 py-4 whitespace-nowrap font-medium text-slate-900">${state.modelConfig[name].name}</td><td colspan="4" class="px-6 py-4 whitespace-nowrap text-red-500">Training Failed</td></tr>`;
+            }
+        });
+        DOMElements.errorTableBody.innerHTML = html;
+    }
+
+
+    // --- CORE LOGIC & MODEL TRAINING ---
+
+    function handleDataGeneration() {
+        const numPoints = parseInt(DOMElements.numPoints.value);
+        const noiseLevel = parseFloat(DOMElements.noiseLevel.value);
+        const funcType = DOMElements.funcType.value;
+
+        const { X, y } = generateData(numPoints, noiseLevel, funcType);
+        const { X_train, y_train, X_test, y_test } = trainTestSplit(X, y);
+
+        state.data = { X, y, X_train, y_train, X_test, y_test };
+
+        state.scalers.X = new StandardScaler();
+        state.scalers.y = new StandardScaler();
+        state.scalers.X.fit(X_train);
+        state.scalers.y.fit(y_train);
+        
+        state.models = {};
+        state.errors = {};
+        updatePlot();
+        displayErrors();
+    }
+
+    async function trainAllModels() {
+        if (state.data.X_train.length === 0) return;
+
+        DOMElements.trainBtn.textContent = 'Training...';
+        DOMElements.trainBtn.disabled = true;
+
+        state.models = {};
+        state.errors = {};
+
+        const X_train_scaled = state.scalers.X.transform(state.data.X_train);
+        const y_train_scaled = state.scalers.y.transform(state.data.y_train);
+        const X_test_scaled = state.scalers.X.transform(state.data.X_test);
+
+        const activeModels = Object.keys(state.modelConfig).filter(key => state.modelConfig[key].active);
+
+        for (const modelKey of activeModels) {
+            try {
+                let model, train_pred, test_pred;
+                
+                if (modelKey === 'GP') {
+                    const length_scale = parseFloat(document.getElementById('gp-ls').value);
+                    const noise = parseFloat(document.getElementById('gp-noise').value);
+                    
+                    const kernel = (d_sq) => Math.exp(-d_sq / (2 * length_scale ** 2));
+
+                    model = {
+                        name: 'GP',
+                        last_prediction: null,
+                        predict: (X_pred_data) => {
+                            const y_mean = state.scalers.y.mean;
+                            const X_train_flat = state.data.X_train.flat();
+                            const y_train_flat = state.data.y_train.flat();
+                            
+                            const mean = [];
+                            const std = [];
+
+                            X_pred_data.forEach(x_pred => {
+                                const weights = X_train_flat.map(x_train => kernel((x_train - x_pred[0])**2));
+                                const total_weight = d3.sum(weights);
+
+                                if (total_weight > 1e-8) {
+                                    const pred_mean = d3.sum(weights, (w, i) => w * y_train_flat[i]) / total_weight;
+                                    mean.push([pred_mean]);
+
+                                    const pred_std = Math.sqrt(d3.sum(weights, (w, i) => w * (y_train_flat[i] - pred_mean)**2) / total_weight);
+                                    std.push([pred_std + noise]);
+                                } else {
+                                    mean.push([y_mean]);
+                                    std.push([state.scalers.y.std + noise]);
+                                }
+                            });
+                            return { mean, std };
+                        }
+                    };
+                    const train_prediction = model.predict(state.data.X_train);
+                    const test_prediction = model.predict(state.data.X_test);
+                    train_pred = train_prediction.mean;
+                    test_pred = test_prediction.mean;
+
+                } else if (modelKey === 'MLP') {
+                    const hiddenLayers = document.getElementById('mlp-layers').value.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
+                    const learningRate = parseFloat(document.getElementById('mlp-lr').value);
+                    
+                    model = tf.sequential();
+                    model.add(tf.layers.dense({inputShape: [1], units: hiddenLayers[0] || 50, activation: 'relu'}));
+                    for(let i = 1; i < hiddenLayers.length; i++) {
+                        model.add(tf.layers.dense({units: hiddenLayers[i], activation: 'relu'}));
+                    }
+                    model.add(tf.layers.dense({units: 1}));
+                    model.compile({optimizer: tf.train.adam(learningRate), loss: 'meanSquaredError'});
+                    
+                    await model.fit(tf.tensor2d(X_train_scaled), tf.tensor2d(y_train_scaled), {epochs: 500, verbose: 0});
+                    
+                    const train_pred_scaled = model.predict(tf.tensor2d(X_train_scaled)).arraySync();
+                    const test_pred_scaled = model.predict(tf.tensor2d(X_test_scaled)).arraySync();
+                    train_pred = state.scalers.y.inverseTransform(train_pred_scaled);
+                    test_pred = state.scalers.y.inverseTransform(test_pred_scaled);
+                } 
+                else if (modelKey === 'NB') {
+                    const num_bins = parseInt(document.getElementById('nb-bins').value);
+                    const bins = d3.range(num_bins + 1).map(i => state.scalers.X.mean + (i - num_bins / 2) * 3 * state.scalers.X.std / (num_bins / 2));
+                    const bin_means = Array(num_bins).fill(0);
+                    const bin_counts = Array(num_bins).fill(0);
+
+                    state.data.X_train.forEach((x, i) => {
+                        const bin_index = d3.bisect(bins, x[0]) - 1;
+                        if(bin_index >= 0 && bin_index < num_bins) {
+                            bin_means[bin_index] += state.data.y_train[i][0];
+                            bin_counts[bin_index]++;
+                        }
+                    });
+                    for(let i=0; i<num_bins; i++) {
+                        if(bin_counts[i] > 0) bin_means[i] /= bin_counts[i];
+                    }
+                    model = {
+                        predict: (X_pred_data) => X_pred_data.map(x => {
+                            const bin_index = d3.bisect(bins, x[0]) - 1;
+                            return [bin_means[Math.max(0, Math.min(num_bins - 1, bin_index))] || state.scalers.y.mean];
+                        })
+                    };
+                    train_pred = model.predict(state.data.X_train);
+                    test_pred = model.predict(state.data.X_test);
+                } 
+                else {
+                    const sortedTrain = state.data.X_train.map((x, i) => ({x: x[0], y: state.data.y_train[i][0]})).sort((a,b) => a.x - b.x);
+                    model = {
+                        predict: (X_pred_data) => X_pred_data.map(x_val => {
+                            const x = x_val[0];
+                            const closest = sortedTrain.reduce((prev, curr) => Math.abs(curr.x - x) < Math.abs(prev.x - x) ? curr : prev);
+                            return [closest.y];
+                        })
+                    };
+                     train_pred = model.predict(state.data.X_train);
+                     test_pred = model.predict(state.data.X_test);
+                }
+
+                state.models[modelKey] = model;
+                const train_errors = calculateErrors(state.data.y_train, train_pred);
+                const test_errors = calculateErrors(state.data.y_test, test_pred);
+                state.errors[modelKey] = {
+                    train_rmse: train_errors.rmse, test_rmse: test_errors.rmse,
+                    train_r2: train_errors.r2, test_r2: test_errors.r2
+                };
+
+            } catch (e) {
+                console.error(`Error training ${modelKey}:`, e);
+                state.models[modelKey] = null;
+                state.errors[modelKey] = null;
+            }
+        }
+        
+        updatePlot();
+        displayErrors();
+        
+        DOMElements.trainBtn.textContent = 'Train Models';
+        DOMElements.trainBtn.disabled = false;
+    }
+
+    // --- INITIALIZATION & EVENT LISTENERS ---
+
+    function init() {
+        DOMElements.modelSelectionGrid.innerHTML = Object.entries(state.modelConfig).map(([key, config]) => `<div class="flex items-center"><input id="check-${key}" type="checkbox" data-model="${key}" class="h-4 w-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500 model-check" ${config.active ? 'checked' : ''}><label for="check-${key}" class="ml-2 block text-sm text-slate-900">${config.name}</label></div>`).join('');
+
+        buildParamControls();
+        initPlot();
+        handleDataGeneration();
+        trainAllModels();
+
+        DOMElements.numPoints.addEventListener('input', (e) => DOMElements.numPointsValue.textContent = e.target.value);
+        DOMElements.noiseLevel.addEventListener('input', (e) => DOMElements.noiseLevelValue.textContent = parseFloat(e.target.value).toFixed(2));
+        
+        DOMElements.generateBtn.addEventListener('click', () => {
+             handleDataGeneration();
+             trainAllModels();
+        });
+        
+        DOMElements.trainBtn.addEventListener('click', trainAllModels);
+        
+        DOMElements.clearBtn.addEventListener('click', () => {
+            state.models = {};
+            state.errors = {};
+            updatePlot();
+            displayErrors();
+        });
+
+        DOMElements.modelSelectionGrid.addEventListener('change', (e) => {
+            if (e.target.classList.contains('model-check')) {
+                const modelKey = e.target.dataset.model;
+                state.modelConfig[modelKey].active = e.target.checked;
+                buildParamControls();
+            }
+        });
+        
+        DOMElements.aboutButton.addEventListener('click', () => {
+            DOMElements.aboutModal.classList.remove('hidden');
+            setTimeout(() => {
+                 DOMElements.aboutModal.classList.remove('opacity-0');
+                 DOMElements.aboutModal.querySelector('.modal-content').classList.remove('scale-95');
+            }, 10);
+        });
+        DOMElements.closeModalBtn.addEventListener('click', () => {
+            DOMElements.aboutModal.classList.add('opacity-0');
+            DOMElements.aboutModal.querySelector('.modal-content').classList.add('scale-95');
+            setTimeout(() => DOMElements.aboutModal.classList.add('hidden'), 250);
+        });
+
+        window.addEventListener('resize', () => {
+            initPlot();
+            updatePlot();
+        });
+    }
+
+    init();
+});
+</script>
+
+</body>
+</html>
