@@ -7,6 +7,7 @@ This repository contains the source code for Le Lu’s professional website. It 
 - **index.html**: Main HTML structure.
 - **style.css**: Modern CSS styling for layout and design.
 - **script.js**: JavaScript for smooth scrolling.
+- **ModelsComparison_v1.02.html**: Interactive curve fitting model comparison tool.
 - **images/profile.jpg**: Your profile photo (rename your actual image to `profile.jpg` and place it in the images folder).
 - **README.md**: This documentation.
 - **LICENSE**: License for this project.
