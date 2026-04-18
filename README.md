@@ -1,30 +1,27 @@
-# Le Lu – Professional Personal Website
+# Le Lu — Personal Website
 
-This repository contains the source code for Le Lu’s professional website. It integrates details from my photo, profile, publications (with DOIs and links), patents, experience, education, skills, and contact information.
+Source for [lulelaboratory.github.io](https://lulelaboratory.github.io).
 
-## File Structure
+Academic, content-first single-page site: sidebar with contact and top
+skills; main column with summary, experience, education, publications,
+patents, open-source projects, and web tools.
 
-- **index.html**: Main HTML structure.
-- **style.css**: Modern CSS styling for layout and design.
-- **script.js**: JavaScript for smooth scrolling.
-- **ModelsComparison_v1.02.html**: Interactive curve fitting model comparison tool.
-- **images/profile.jpg**: Your profile photo (rename your actual image to `profile.jpg` and place it in the images folder).
-- **README.md**: This documentation.
-- **LICENSE**: License for this project.
-- **.gitignore**: Git ignore file.
+## Files
 
-## Usage
+- `index.html` — page markup
+- `style.css` — styling (light theme, two-column at ≥860 px, collapses on mobile)
+- `script.js` — smooth-scroll + active-section highlighting in the in-page nav
+- `ModelsComparison_v1.02.html` — interactive Curve Fitting Model Comparison tool
+- `images/profile.jpg` — portrait photo
+- `LICENSE`
 
-1. **Clone** this repository.
-2. **Replace** the placeholder `profile.jpg` in the `images/` folder with your actual photo.
-3. **Review & Update** any content in `index.html` and `style.css` (especially the Publications section) with your actual publication details.
-4. **Push** the repository to GitHub.
-5. **Enable** GitHub Pages via the repository settings to deploy the site.
+## Local preview
 
-## Customization
+```bash
+python3 -m http.server 8000
+# open http://localhost:8000
+```
 
-- Adjust colors, fonts, and layout in `style.css`.
-- Modify or add sections in `index.html` as your professional profile evolves.
-- Update your publication details by editing the Publications section in `index.html`.
+## Deploy
 
-Happy building!
+GitHub Pages serves directly from the `main` branch.
