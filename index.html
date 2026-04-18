@@ -3,209 +3,271 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Le Lu – Professional Profile</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet" />
+  <meta name="description" content="Le Lu — Member of Technical Staff at TSMC. PhD in Chemistry (Tsinghua). Working on AI for Science and CMP simulation." />
+  <title>Le Lu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Navigation -->
-  <header>
-    <nav>
-      <div class="container nav-container">
-        <div class="logo">
-          <a href="#home">Le Lu</a>
-        </div>
-        <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#publications">Publications</a></li>
-          <li><a href="#patents">Patents</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#tools">Tools</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7127569160391563"
-     crossorigin="anonymous"></script>    
-  </header>
+  <div class="page">
+    <aside class="sidebar">
+      <img class="portrait" src="images/profile.jpg" alt="Portrait of Le Lu" />
+      <h1 class="name">Le Lu</h1>
+      <p class="role">Member of Technical Staff @ TSMC</p>
+      <p class="tagline">PhD in Chemistry · AI for Science &amp; CMP Simulation</p>
+      <p class="location">Hsinchu City, Taiwan</p>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="container hero-content">
-      <div class="hero-text">
-        <h1>Le Lu</h1>
-        <p>
-          Scientist &amp; Project Manager | Expert in CMP &amp; Material Simulation<br />
-          Solving Complex Material Challenges in Semiconductor Fab
-        </p>
-      </div>
-      <div class="hero-image">
-        <!-- Replace "profile.jpg" with your actual photo in the images folder -->
-        <img src="images/profile.jpg" alt="Le Lu Photo" />
-      </div>
-    </div>
-  </section>
+      <nav class="contact" aria-label="Contact">
+        <a href="mailto:lulelaboratory@gmail.com">lulelaboratory@gmail.com</a>
+        <a href="https://www.linkedin.com/in/lulelaboratory/" rel="me noopener" target="_blank">LinkedIn</a>
+        <a href="https://github.com/lulelaboratory" rel="me noopener" target="_blank">GitHub</a>
+        <a href="https://orcid.org/0000-0003-2022-9825" rel="me noopener" target="_blank">ORCID</a>
+        <a href="https://scholar.google.com/citations?user=kQF9vdgAAAAJ" rel="me noopener" target="_blank">Google Scholar</a>
+        <a href="https://lulelaboratory.blogspot.com/" rel="me noopener" target="_blank">Blog</a>
+      </nav>
 
-  <!-- About Section -->
-  <section id="about" class="section">
-    <div class="container">
-      <h2>About Me</h2>
-      <p>
-        I earned my Ph.D. in Chemistry from Tsinghua University. From 2015 to 2021, I was a pivotal member of Professor Ruimao Hua’s laboratory, where I specialized in innovative reaction methodologies and uncovering reaction mechanisms using computational and spectroscopic approaches.
-      </p>
-      <p>
-        My breakthrough observation of the π-complex intermediate during arenes nitration led to the development of an efficient HNO<sub>3</sub>/HFIP nitrating system. I also pioneered the Monomer-Polymer-Monomer (MPM) method—revolutionizing recyclable polymer creation and the synthesis of valuable 5‑substituted benzofurans for pharmaceutical applications.
-      </p>
-      <p>
-        In 2022, I joined TSMC as a scientist and project manager to tackle complex material challenges in advanced nodes, significantly enhancing N3 yield. To date, I have published 11 papers and hold multiple patents.
-      </p>
-    </div>
-  </section>
-
-  <!-- Publications Section -->
-  <section id="publications" class="section">
-    <div class="container">
-      <h2>Publications</h2>
-      <ol class="publication-list">
-        <li>
-          <h4>Conversion of β-glycopyranoside to α-glycopyranoside by photo-activated radical reaction</h4>
-        </li>
-        <li>
-          <h4>HNO<sub>3</sub>/HFIP: A Nitrating System for Arenes with Direct Observation of π-Complex Intermediates</h4>
-        </li>
-        <li>
-          <h4>Dual XH–π Interaction of Hexafluoroisopropanol with Arenes</h4>
-        </li>
-        <li>
-          <h4>A Monomer‐Polymer‐Monomer (MPM) Organic Synthesis Strategy: Synthesis and Application of Polybenzofuran for Functionalizing Benzene Ring of Benzofuran</h4>
-        </li>
-        <li>
-          <h4>Biaryl Formation via Base-Promoted Direct Coupling Reactions of Arenes with Aryl Halides</h4>
-        </li>
-      </ol>
-      <p class="small-text">
-        (Total Publications: 11. For the complete list, please visit my 
-        <a href="https://scholar.google.com/citations?user=kQF9vdgAAAAJ&hl=zh-TW" target="_blank">Google Scholar</a> or 
-        <a href="https://orcid.org/0000-0003-2022-9825" target="_blank">ORCID</a> profile.)
-      </p>
-    </div>
-  </section>
-
-  <!-- Patents Section -->
-  <section id="patents" class="section">
-    <div class="container">
-      <h2>Patents</h2>
-      <ul class="publication-list">
-        <li>
-          <strong>Soluble polybenzfuran, preparation method thereof and application thereof in synthesizing 5‑substituted benzofuran</strong>
-        </li>
-        <li>
-          <strong>Method for synthesizing multi‑connected benzofuran and derivative thereof</strong>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Experience Section -->
-  <section id="experience" class="section">
-    <div class="container">
-      <h2>Experience</h2>
-      <div class="experience-item">
-        <h3>Principal Engineer / Scientist &amp; Project Manager</h3>
-        <p><em>TSMC (February 2022 – Present)</em></p>
+      <section class="side-block">
+        <h2>Top Skills</h2>
         <ul>
-          <li>Addressing complex material challenges in advanced nodes, significantly improving N3 yield.</li>
-          <li>Leading cross-functional teams to innovate CMP processes and material simulations.</li>
-        </ul>
-      </div>
-      <div class="experience-item">
-        <h3>Graduate Researcher &amp; Research Assistant</h3>
-        <p><em>Professor Ruimao Hua’s Laboratory (2015 – 2021)</em></p>
-        <ul>
-          <li>Developed novel reaction methodologies and mechanisms using computational chemistry and spectroscopy.</li>
-          <li>Discovered the π-complex intermediate in arenes nitration, enabling a room‑temperature HNO<sub>3</sub>/HFIP nitrating system.</li>
-          <li>Invented the MPM method for recyclable polymers and 5‑substituted benzofurans.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Education Section -->
-  <section id="education" class="section">
-    <div class="container">
-      <h2>Education</h2>
-      <ul class="education-list">
-        <li><strong>Doctor of Philosophy (Ph.D.), Chemistry</strong> – Tsinghua University (2018 – 2021)</li>
-        <li><strong>Master of Science (M.Sc.), Chemistry</strong> – Tsinghua University (2015 – 2018)</li>
-        <li><strong>Bachelor of Science (B.Sc.), Chemistry</strong> – Fu Jen Catholic University (2011 – 2015)</li>
-        <li><strong>No Code AI &amp; Machine Learning</strong> – MIT Professional Education (Mar 2024 – Jun 2024)</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Skills & Certifications Section -->
-  <section id="skills" class="section">
-    <div class="container">
-      <h2>Skills &amp; Certifications</h2>
-      <div class="skills-list">
-        <h3>Top Skills</h3>
-        <ul>
-          <li>Deep Learning</li>
-          <li>Network Deployment</li>
+          <li>Deep Learning Network Deployment</li>
           <li>Data Science</li>
           <li>Artificial Intelligence (AI)</li>
-          <li>CMP &amp; Material Simulation</li>
         </ul>
-      </div>
-      <div class="certifications-list">
-        <h3>Certifications</h3>
+      </section>
+
+      <section class="side-block">
+        <h2>Languages</h2>
+        <ul>
+          <li>English <span class="muted">— Professional Working</span></li>
+          <li>Chinese <span class="muted">— Native or Bilingual</span></li>
+        </ul>
+      </section>
+
+      <section class="side-block">
+        <h2>Certifications</h2>
         <ul>
           <li>Chemical Technician Class C</li>
           <li>NVIDIA Deep Learning Institute</li>
         </ul>
-      </div>
-      <div class="languages-list">
-        <h3>Languages</h3>
-        <ul>
-          <li>English (Professional Working)</li>
-          <li>Chinese (Native or Bilingual)</li>
+      </section>
+    </aside>
+
+    <main class="main">
+      <nav class="section-nav" aria-label="Section">
+        <a href="#summary">Summary</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#publications">Publications</a>
+        <a href="#patents">Patents</a>
+        <a href="#projects">Projects</a>
+        <a href="#tools">Web Tools</a>
+      </nav>
+
+      <section id="summary" class="section">
+        <h2>Summary</h2>
+        <p>
+          I work at the intersection of chemistry, computation, and
+          semiconductor manufacturing. After earning my PhD in Chemistry from
+          Tsinghua University, I joined TSMC in 2022 to tackle complex
+          material challenges at advanced technology nodes.
+        </p>
+        <p>
+          During my PhD in Professor Ruimao Hua's laboratory (2015–2021), I
+          developed new reaction methodologies and studied their mechanisms
+          with computational chemistry and spectroscopy. I directly observed
+          the π-complex intermediate in arene nitration, which led to the
+          efficient HNO<sub>3</sub>/HFIP room-temperature nitrating system. I
+          also invented the Monomer–Polymer–Monomer (MPM) method, enabling
+          recyclable polymers and the synthesis of 5-substituted benzofurans
+          relevant to the pharmaceutical industry.
+        </p>
+        <p>
+          Today my focus is AI for Science and CMP simulation: applying deep
+          learning, molecular simulation, and data-driven modeling to
+          understand material behavior at advanced nodes. I have 11 published
+          papers and hold multiple patents as the inventor.
+        </p>
+      </section>
+
+      <section id="experience" class="section">
+        <h2>Experience</h2>
+
+        <article class="entry">
+          <header class="entry-head">
+            <h3>TSMC</h3>
+            <span class="meta">Feb 2022 – Present · 4 yrs 3 mos</span>
+          </header>
+          <div class="sub-entry">
+            <h4>Member of Technical Staff / Section Manager</h4>
+            <span class="meta">Jan 2026 – Present</span>
+          </div>
+          <div class="sub-entry">
+            <h4>Principal Engineer</h4>
+            <span class="meta">Feb 2022 – Jan 2026 · 4 yrs</span>
+          </div>
+          <ul>
+            <li>Address complex material challenges in advanced nodes;
+              notably enhanced the yield of N3.</li>
+            <li>Lead CMP process innovation and material simulation for
+              downstream yield impact.</li>
+            <li>Apply deep learning and data-driven modeling to fab
+              material problems (AI for Science).</li>
+          </ul>
+        </article>
+
+        <article class="entry">
+          <header class="entry-head">
+            <h3>Prof. Ruimao Hua's Laboratory, Tsinghua University</h3>
+            <span class="meta">2015 – 2021</span>
+          </header>
+          <div class="sub-entry">
+            <h4>Graduate Researcher &amp; Research Assistant</h4>
+          </div>
+          <ul>
+            <li>Developed novel reaction methodologies and elucidated
+              mechanisms with computational chemistry and spectroscopy.</li>
+            <li>Directly observed the π-complex intermediate in arene
+              nitration, enabling the room-temperature
+              HNO<sub>3</sub>/HFIP system.</li>
+            <li>Invented the Monomer–Polymer–Monomer (MPM) method for
+              recyclable polymers and 5-substituted benzofurans.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="education" class="section">
+        <h2>Education</h2>
+        <ul class="education">
+          <li>
+            <strong>Tsinghua University</strong> — PhD, Chemistry
+            <span class="meta">2018 – 2021</span>
+          </li>
+          <li>
+            <strong>MIT Professional Education</strong> — No Code AI &amp; Machine Learning
+            <span class="meta">Mar 2024 – Jun 2024</span>
+          </li>
+          <li>
+            <strong>Tsinghua University</strong> — MSc, Chemistry
+            <span class="meta">2015 – 2018</span>
+          </li>
+          <li>
+            <strong>Fu Jen Catholic University</strong> — BSc, Chemistry
+            <span class="meta">2011 – 2015</span>
+          </li>
+          <li>
+            <strong>Tsinghua University</strong> — Chemistry
+            <span class="meta">2013 – 2014</span>
+          </li>
         </ul>
-      </div>
+      </section>
+
+      <section id="publications" class="section">
+        <h2>Publications</h2>
+        <ol class="pub-list">
+          <li>
+            <span class="pub-title">HNO<sub>3</sub>/HFIP: A Nitrating System for Arenes with Direct Observation of π-Complex Intermediates.</span>
+            <span class="pub-authors">Le Lu, Hu Liu, Ruimao Hua.</span>
+            <span class="pub-venue"><em>Organic Letters</em> <strong>2018</strong>, 20 (11), 3197–3201.</span>
+            <a class="doi" href="https://doi.org/10.1021/acs.orglett.8b01028" target="_blank" rel="noopener">doi:10.1021/acs.orglett.8b01028</a>
+          </li>
+          <li>
+            <span class="pub-title">Dual XH–π Interaction of Hexafluoroisopropanol with Arenes.</span>
+            <span class="pub-authors">Le Lu, Ruimao Hua.</span>
+            <span class="pub-venue"><em>Molecules</em> <strong>2021</strong>.</span>
+            <a class="doi" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8347120/" target="_blank" rel="noopener">PMC8347120</a>
+          </li>
+          <li>
+            <span class="pub-title">A Monomer–Polymer–Monomer (MPM) Organic Synthesis Strategy: Synthesis and Application of Polybenzofuran for Functionalizing Benzene Ring of Benzofuran.</span>
+            <span class="pub-authors">Le Lu, Ruimao Hua.</span>
+            <span class="pub-venue"><em>Asian Journal of Organic Chemistry</em> <strong>2021</strong>.</span>
+            <a class="doi" href="https://doi.org/10.1002/ajoc.202100208" target="_blank" rel="noopener">doi:10.1002/ajoc.202100208</a>
+          </li>
+          <li>
+            <span class="pub-title">Biaryl Formation via Base-Promoted Direct Coupling Reactions of Arenes with Aryl Halides.</span>
+            <span class="pub-authors">Le Lu, Ruimao Hua, et al.</span>
+            <a class="doi" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8223439/" target="_blank" rel="noopener">PMC8223439</a>
+          </li>
+          <li>
+            <span class="pub-title">Conversion of β-glycopyranoside to α-glycopyranoside by photo-activated radical reaction.</span>
+            <span class="pub-authors">Le Lu et al.</span>
+          </li>
+        </ol>
+        <p class="note">
+          Total: 11 publications. Full list on
+          <a href="https://scholar.google.com/citations?user=kQF9vdgAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+          ·
+          <a href="https://orcid.org/0000-0003-2022-9825" target="_blank" rel="noopener">ORCID</a>.
+        </p>
+      </section>
+
+      <section id="patents" class="section">
+        <h2>Patents</h2>
+        <ul class="pub-list">
+          <li>
+            <span class="pub-title">Soluble polybenzofuran, preparation method thereof and application thereof in synthesizing 5-substituted benzofuran.</span>
+            <span class="pub-authors">Inventor: Le Lu.</span>
+          </li>
+          <li>
+            <span class="pub-title">Method for synthesizing multi-connected benzofuran and derivative thereof.</span>
+            <span class="pub-authors">Inventor: Le Lu.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section id="projects" class="section">
+        <h2>Projects</h2>
+        <div class="project-grid">
+          <article class="project">
+            <h3>MD Fragment Analyzer</h3>
+            <p>
+              Python tool for fragment analysis of molecular dynamics
+              trajectories. Computes interatomic distances, detects bonds
+              from covalent / van der Waals radii with a user-configurable
+              scale factor, and groups atoms into fragments via a union-find
+              algorithm. Supports periodic boundary conditions, Numba JIT
+              acceleration, multiprocessing, and optional CUDA GPU
+              acceleration, with a Tkinter GUI.
+            </p>
+            <p class="stack">Python · Numba · CUDA · Tkinter</p>
+            <p class="project-links">
+              <a href="https://github.com/lulelaboratory/MD_Fragment_Analyzer" target="_blank" rel="noopener">GitHub</a>
+              ·
+              <a href="https://doi.org/10.5281/zenodo.14962022" target="_blank" rel="noopener">Zenodo DOI</a>
+            </p>
+          </article>
+
+          <article class="project">
+            <h3>Slip / No-Slip Estimator</h3>
+            <p>
+              Python GUI that helps CFD users choose the appropriate
+              boundary condition — slip or no-slip — from molecular-scale
+              friction parameters, bridging MD-informed interfacial
+              behavior to continuum simulation.
+            </p>
+            <p class="stack">Python · GUI</p>
+            <p class="project-links">
+              <a href="https://github.com/lulelaboratory/slip-noslip-estimator" target="_blank" rel="noopener">GitHub</a>
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="tools" class="section">
+        <h2>Web Tools</h2>
+        <p>
+          <a href="ModelsComparison_v1.02.html" target="_blank" rel="noopener">Curve Fitting Model Comparison Tool</a>
+          — an interactive page for comparing machine learning models on
+          curve fitting tasks.
+        </p>
+      </section>
+
+      <footer class="footer">
+        <p>&copy; 2026 Le Lu</p>
+      </footer>
+    </main>
   </div>
-  </section>
-
-  <!-- Tools Section -->
-  <section id="tools" class="section">
-    <div class="container">
-      <h2>Web Tools</h2>
-      <p>
-        Explore my interactive
-        <a href="ModelsComparison_v1.02.html" target="_blank">Curve Fitting Model Comparison Tool</a>
-        to compare machine learning models for curve fitting tasks.
-      </p>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="section">
-    <div class="container">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:lulelaboratory@gmail.com">lulelaboratory@gmail.com</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/lulelaboratory/" target="_blank">www.linkedin.com/in/lulelaboratory</a></p>
-      <p>GitHub: <a href="https://github.com/lulelaboratory" target="_blank">github.com/lulelaboratory</a></p>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container footer-container">
-      <p>&copy; 2025 Le Lu. All rights reserved.</p>
-    </div>
-  </footer>
 
   <script src="script.js"></script>
 </body>
